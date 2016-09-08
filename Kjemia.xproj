@@ -7,7 +7,7 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>5b7526a1-ef46-428a-9649-710638023039</ProjectGuid>
+    <ProjectGuid>14912932-e9e0-4725-9904-01d7f3262b45</ProjectGuid>
     <RootNamespace>Kjemia</RootNamespace>
   </PropertyGroup>
   <PropertyGroup>
