@@ -5,6 +5,8 @@ function postOrder(data) {
     $.ajax({
         type: 'POST',
         url: '/api/Order',
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
         data: ko.toJSON(data),
         success: function (response) {
             

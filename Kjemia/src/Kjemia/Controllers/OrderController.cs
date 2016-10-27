@@ -35,7 +35,7 @@ namespace Kjemia.Controllers
         {
             var emailMessage = new MimeMessage();
             emailMessage.From.Add(new MailboxAddress("Kjemia", "web@kjemia.no"));
-            emailMessage.To.Add(new MailboxAddress("Kjemia", "kontakt@kjemia.no"));
+            emailMessage.To.Add(new MailboxAddress("Kjemia", "oftedal.kristian@gmail.com"));
             emailMessage.Subject = "Ny bestilling - " + value.Product;
             var body = new TextPart("plain")
             {
@@ -45,8 +45,8 @@ namespace Kjemia.Controllers
             emailMessage.Body = body;
             using (var client = new SmtpClient())
             {
-                client.Connect("imap.domeneshop.no", 143, SecureSocketOptions.Auto);
-                client.Authenticate("web@kjemia.no", @"Glykolysen11");
+                client.Connect("smtp.office365.com", 587, SecureSocketOptions.Auto);
+                client.Authenticate("kristian.oftedal@pointtaken.no", @"ma\+05v2");
                 await client.SendAsync(emailMessage).ConfigureAwait(false);
                 await client.DisconnectAsync(true).ConfigureAwait(false);
             }
