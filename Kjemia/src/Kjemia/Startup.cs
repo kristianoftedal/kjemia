@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Kjemia.db;
+using Microsoft.EntityFrameworkCore;
 
 namespace Kjemia
 {
@@ -35,6 +37,7 @@ namespace Kjemia
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
+            
 
             services.AddMvc();
         }

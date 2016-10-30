@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Kjemia.Models;
 using MimeKit;
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using Kjemia.db;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,6 +14,12 @@ namespace Kjemia.Controllers
     [Route("api/[controller]")]
     public class OrderController : Controller
     {
+
+        private KjemiaContext _dbcontext;
+
+        public OrderController()
+        {
+        }
         // GET: api/values
         [HttpGet]
         public IEnumerable<string> Get()
@@ -33,8 +38,11 @@ namespace Kjemia.Controllers
         [HttpPost]
         public async void Post([FromBody]Order value)
         {
+            value.Created = DateTime.Now;
+            value.Status = "Mottatt";
+            
             var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress("Kjemia", "web@kjemia.no"));
+            emailMessage.From.Add(new MailboxAddress("Kjemia", "kristian.oftedal@pointtaken.no"));
             emailMessage.To.Add(new MailboxAddress("Kjemia", "oftedal.kristian@gmail.com"));
             emailMessage.Subject = "Ny bestilling - " + value.Product;
             var body = new TextPart("plain")
@@ -58,14 +66,14 @@ namespace Kjemia.Controllers
 
             body += value.Product + Environment.NewLine;
             body += "Kunde: " + Environment.NewLine;
-            body += value.Name + Environment.NewLine;
-            body += value.Address + Environment.NewLine;
+            body += "Navn: " + value.Name + Environment.NewLine;
+            body += "Adresse: " + value.Address + Environment.NewLine;
             if (!string.IsNullOrEmpty(value.Email))
-                body += value.Email + Environment.NewLine;
+                body += "Email: " + value.Email + Environment.NewLine;
             if (!string.IsNullOrEmpty(value.Phone))
-                body += value.Phone + Environment.NewLine;
+                body += "Tlf: " + value.Phone + Environment.NewLine;
             if (!string.IsNullOrEmpty(value.Highschool))
-                body += value.Highschool;
+                body += "Videregående: " + value.Highschool;
             if (value.Topics != null && value.Topics.Length > 0)
                 body += "Trenger hjelp med: " + String.Join(", ", value.Topics) + Environment.NewLine;
             

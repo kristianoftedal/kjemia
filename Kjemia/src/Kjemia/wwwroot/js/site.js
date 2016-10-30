@@ -9,10 +9,11 @@ function postOrder(data) {
         dataType: "json",
         data: ko.toJSON(data),
         success: function (response) {
-            
+            return true;
         }
     });
 }
+
 
 function KompendiumModel() {
     var self = this;
@@ -30,6 +31,7 @@ function WorkshopModel() {
     self.address = ko.observable();
     self.email = ko.observable();
     self.highSchool = ko.observable();
+    self.withCompendium = ko.observable(false);
     self.sendOrder = function (self) {
         postOrder(self);
     }
@@ -46,6 +48,7 @@ function ExamModel() {
 }
 
 function HoursModel() {
+    var self = this;
     self.name = ko.observable();
     self.address = ko.observable();
     self.email = ko.observable();
@@ -53,20 +56,43 @@ function HoursModel() {
     self.phone = ko.observable();
     self.topics = ko.observableArray();
     self.hours = ko.observable();
+    self.kjemi = ko.observable("kjemi2");
     self.sendOrder = function (self) {
         postOrder(self);
     }
 }
 
+
 var kompendiumModel = new KompendiumModel();
 ko.applyBindings(kompendiumModel, document.getElementById("kompendiumModal"));
 
 var workshopModel = new WorkshopModel();
-ko.applyBindings(workshopModel, document.getElementById("workshopModal"))
+ko.applyBindings(workshopModel, document.getElementById("workshopModal"));
 
 var examModel = new ExamModel();
-ko.applyBindings(examModel, document.getElementById("eksamenModal"))
+ko.applyBindings(examModel, document.getElementById("eksamenModal"));
 
 var hoursModel = new HoursModel();
-ko.applyBindings(hoursModel, document.getElementById("privatundervisningModal"))
+ko.applyBindings(hoursModel, document.getElementById("privatundervisningModal"));
 
+
+$(document).ready(function () {
+
+    $('#compendiumButton').on('click', function (e) {
+        postOrder(kompendiumModel);
+    });
+    $('#workshopCompendiumButton').on('click', function (e) {
+        workshopModel.withCompendium(true);
+        postOrder(workshopModel);
+    });
+    $('#workshopButton').on('click', function (e) {
+        postOrder(workshopModel);
+    });
+    $('#examButton').on('click', function (e) {
+        postOrder(examModel);
+    });
+    $('#hoursButton').on('click', function (e) {
+        postOrder(hoursModel);
+    });
+
+});

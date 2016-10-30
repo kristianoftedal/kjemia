@@ -15,5 +15,9 @@ namespace Kjemia.Models
         public string[] Topics { get; set; }
         public string Product { get; set; }
         public string Hours { get; set; }
+        public string Status { get; set; }
+        public bool WithCompendium { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime Updated { get; set; }
     }
 }

@@ -19,6 +19,7 @@
 }
 
 .reviews {
+    cursor: pointer;
     width: 100%;
     display: flex;
     margin-top: 20px;
@@ -129,4 +130,13 @@ body {
 
 .two {
   background-image: url('../images/cj.jpg');
+}
+
+.molecule {
+    margin-top: 50px;
+}
+
+form {
+    margin-left: 10px;
+    float: right;
 }
