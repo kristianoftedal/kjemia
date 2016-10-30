@@ -17,8 +17,10 @@ function postOrder(data) {
 
 function KompendiumModel() {
     var self = this;
+    self.product = "Kompenidum";
     self.name = ko.observable();
     self.address = ko.observable();
+    self.showError = ko.observable(false);
     self.highSchool = ko.observable();
     self.sendOrder = function (self) {
         postOrder(self);
@@ -27,11 +29,11 @@ function KompendiumModel() {
 
 function WorkshopModel() {
     var self = this;
+    self.product = "Workshop";
     self.name = ko.observable();
     self.address = ko.observable();
     self.email = ko.observable();
     self.highSchool = ko.observable();
-    self.withCompendium = ko.observable(false);
     self.sendOrder = function (self) {
         postOrder(self);
     }
@@ -39,6 +41,7 @@ function WorkshopModel() {
 
 function ExamModel() {
     var self = this;
+    self.product = "Generalprøve, eksamen";
     self.name = ko.observable();
     self.email = ko.observable();
     self.phone = ko.observable();
@@ -49,6 +52,7 @@ function ExamModel() {
 
 function HoursModel() {
     var self = this;
+    self.product = "Privatundersvisning";
     self.name = ko.observable();
     self.address = ko.observable();
     self.email = ko.observable();
@@ -79,10 +83,18 @@ ko.applyBindings(hoursModel, document.getElementById("privatundervisningModal"))
 $(document).ready(function () {
 
     $('#compendiumButton').on('click', function (e) {
+        if (kompendiumModel.highSchool().toLowerCase().indexOf("akademiet") !== -1 || kompendiumModel.highSchool().toLowerCase().indexOf("sonans") !== -1) {
+            e.preventDefault();
+            workshopModel.name("elev fra en ulovlig skole")
+            postOrder(workshopModel);
+            kompendiumModel.showError(true);
+            return false;
+        }
+
         postOrder(kompendiumModel);
     });
     $('#workshopCompendiumButton').on('click', function (e) {
-        workshopModel.withCompendium(true);
+        workshopModel.product = "Workshop & kompendium";
         postOrder(workshopModel);
     });
     $('#workshopButton').on('click', function (e) {

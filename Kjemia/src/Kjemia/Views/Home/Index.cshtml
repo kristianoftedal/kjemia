@@ -228,14 +228,16 @@
                 <div class="form-group">
                     <input type="text" data-bind="value: highSchool"  placeholder="Din videregåendeskole *" class="form-control input-lg" />
                 </div>
+                <div data-bind="if: showError()">
+                    Du kan dessverre ikke kjøpe kompendiumet om du er elev ved Sonans eller Akademiet
+                </div>
             </div>
-
             <div class="modal-footer">
                 <a href="#" data-dismiss="modal" class="btn btn-default btn-wide">Avbryt</a>
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_s-xclick">
                     <input type="hidden" name="hosted_button_id" value="9HW86AJ9AXPRY">
-                    <button type="submit" id="compendiumButton" class="btn btn-primary" name="submit" alt="PayPal – en trygg og enkel betalingsmetode på nettet!">
+                    <button data-bind="enable: !showError()" type="submit" id="compendiumButton" class="btn btn-primary" name="submit" alt="PayPal – en trygg og enkel betalingsmetode på nettet!">
                         Kjøp <i class="fa fa-paypal" aria-hidden="true"></i>
                     </button>
                     <img alt="" border="0" src="https://www.paypalobjects.com/no_NO/i/scr/pixel.gif" width="1" height="1">
