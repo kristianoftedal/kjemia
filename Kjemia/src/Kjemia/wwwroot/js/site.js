@@ -16,18 +16,16 @@ function KompendiumModel() {
     var self = this;
     self.product = "Kompendium";
     self.name = ko.observable();
-    self.nameError = ko.observable(false);
     self.phone = ko.observable();
-    self.phoneError = ko.observable(false);
     self.address = ko.observable();
-    self.addressError = ko.observable(false);
     self.postnummer = ko.observable();
-    self.postnummerError = ko.observable(false);
     self.poststed = ko.observable();
-    self.poststedError = ko.observable(false);
     self.highSchool = ko.observable();
-    self.highSchoolError = ko.observable(false);
-    self.showError = ko.observable(false);
+    self.showError = ko.computed(function () {
+        if (self.highSchool() != undefined && self.highSchool()) {
+            return self.highSchool().toLowerCase().indexOf("akademiet") !== -1 || self.highSchool().toLowerCase().indexOf("sonans") !== -1
+        }
+    });
     self.validate = function () {
         if (self.name() == undefined || self.name() == '') {
             self.nameError(true);
@@ -60,18 +58,22 @@ function KompendiumModel() {
     }
 }
 
-function WorkshopModel() {
-    var self = this;
-    self.product = "Workshop";
-    self.name = ko.observable();
-    self.address = ko.observable();
-    self.email = ko.observable();
-    self.showError = ko.observable(false);
-    self.highSchool = ko.observable();
-    self.sendOrder = function (self) {
-        postOrder(self);
-    }
-}
+//function WorkshopModel() {
+//    var self = this;
+//    self.product = "Workshop";
+//    self.name = ko.observable();
+//    self.address = ko.observable();
+//    self.email = ko.observable();
+//    self.highSchool = ko.observable();
+//    self.showError = ko.computed(function () {
+//        if (self.highSchool() != undefined && self.highSchool()) {
+//            return self.highSchool().toLowerCase().indexOf("akademiet") !== -1 || self.highSchool().toLowerCase().indexOf("sonans") !== -1
+//        }
+//    });
+//    self.sendOrder = function (self) {
+//        postOrder(self);
+//    }
+//}
 
 function ExamModel() {
     var self = this;
@@ -79,8 +81,13 @@ function ExamModel() {
     self.name = ko.observable();
     self.email = ko.observable();
     self.phone = ko.observable();
-    self.showError = ko.observable(false);
     self.highSchool = ko.observable();
+    self.showError = ko.computed(function () {
+        if (self.highSchool() != undefined && self.highSchool() != '') {
+            debugger;
+            return self.highSchool().toLowerCase().indexOf("akademiet") !== -1 || self.highSchool().toLowerCase().indexOf("sonans") !== -1
+        }
+    });
     self.sendOrder = function (self) {
         postOrder(self);
     }
@@ -92,9 +99,13 @@ function HoursModel() {
     self.name = ko.observable();
     self.address = ko.observable();
     self.email = ko.observable();
-    self.showError = ko.observable(false);
-    self.isSuccess = ko.observable(false);
     self.highSchool = ko.observable();
+    self.showError = ko.computed(function () {
+        if (self.highSchool() != undefined && self.highSchool() != '') {
+            return self.highSchool().toLowerCase().indexOf("akademiet") !== -1 || self.highSchool().toLowerCase().indexOf("sonans") !== -1
+        }
+    });
+    self.isSuccess = ko.observable(false);
     self.phone = ko.observable();
     self.topics = ko.observableArray();
     self.hours = ko.observable();
@@ -107,8 +118,8 @@ function HoursModel() {
 var kompendiumModel = new KompendiumModel();
 ko.applyBindings(kompendiumModel, document.getElementById("kompendiumModal"));
 
-var workshopModel = new WorkshopModel();
-ko.applyBindings(workshopModel, document.getElementById("workshopModal"));
+//var workshopModel = new WorkshopModel();
+//ko.applyBindings(workshopModel, document.getElementById("workshopModal"));
 
 var examModel = new ExamModel();
 ko.applyBindings(examModel, document.getElementById("eksamenModal"));
@@ -157,11 +168,23 @@ $(document).ready(function () {
         postOrder(workshopModel);
     });
     $('#examButton').on('click', function (e) {
+        if (examModel.highSchool().toLowerCase().indexOf("akademiet") !== -1 || examModel.highSchool().toLowerCase().indexOf("sonans") !== -1) {
+            e.preventDefault();
+            examModel.name("elev fra en ulovlig skole")
+            postOrder(examModel);
+            examModel.showError(true);
+            return false;
+        }
         postOrder(examModel);
     });
     $('#hoursButton').on('click', function (e) {
-
         hoursModel.isSuccess(true);
         postOrder(hoursModel);
     });
+
+    $('#closeHours').on('click', function (e) {
+        $('#privatundervisningModal').modal('hide');
+        hoursModel = new HoursModel();
+    });
 });
+

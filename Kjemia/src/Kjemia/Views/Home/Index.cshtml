@@ -164,7 +164,7 @@
                         <li>Svar på alle spørsmål om eksamen.</li>
                         <li>En lærer som er ung og til å forklare kjemi med eksempler du kan kjenne deg igjen i.</li>
                     </ul>
-                    <p>Kun 900 kr. for en skole time a 45 minutter. Faktura sendes på mail etter gjennomført undervisning</p>
+                    <p>Kun 900 kr. for en skole time a 45 minutter. Faktura sendes på mail etter gjennomført undervisning.</p>
                     <a class="btn btn-primary btn-hg" data-toggle="modal" data-target="#privatundervisningModal">Bestill</a>
                 </div>
                 <div class="col-md-4 workshop-img">
@@ -222,7 +222,7 @@
             </div>
 
             <div class="modal-body">
-                <div class="form-group" data-bind="css: { 'has-error': nameError()}">
+                <div class="form-group">
                     <input type="text" data-bind="textInput: name" placeholder="Ditt navn *" class="form-control input-lg" />
                 </div>
                 <div class="form-group">
@@ -268,7 +268,7 @@
     </div>
 </div>
 
-<div class="modal spacing" id="workshopModal" tabindex="-1" role="dialog" aria-hidden="true">
+@*<div class="modal spacing" id="workshopModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -325,13 +325,13 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <div class="modal spacing" id="privatundervisningModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Send forespørsel om privatundervisning</h4>
+                <h4 class="modal-title">Send forespørsel om privattimer</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -412,22 +412,23 @@
                         <input type="checkbox" data-bind="checkedValue: 'Syrer & baser', checked: topics" id="checkbox4" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
                         Syrer & baser
                     </label>
-                    <label class="checkbox" for="checkbox4">
-                        <input type="checkbox" data-bind="checkedValue: 'Likevekter & termokjemi', checked: topics" id="checkbox4" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                    <label class="checkbox" for="checkbox5">
+                        <input type="checkbox" data-bind="checkedValue: 'Likevekter & termokjemi', checked: topics" id="checkbox5" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
                         Likevekter & termokjemi
                     </label>
-                    <label class="checkbox" for="checkbox5">
-                        <input type="checkbox" data-bind="checkedValue: 'Organisk kjemi', checked: topics" id="checkbox5" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                    <label class="checkbox" for="checkbox6">
+                        <input type="checkbox" data-bind="checkedValue: 'Organisk kjemi', checked: topics" id="checkbox6" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
                         Organisk kjemi
                     </label>
                 </div>
             </div>
             <div class="hours-ordered" data-bind="if: isSuccess()">
-                <label>Din bestilling er mottatt og vi vil kontakte så fort vi får mulighet</label>
+                <label>Din bestilling er mottatt og vi vil kontakte så fort vi får mulighet.</label>
             </div>
             <div class="modal-footer">
-                <a href="#" data-dismiss="modal" class="btn btn-default btn-wide">Avbryt</a>
-                    <button type="submit" data-bind="enable: !isSuccess() && !showError() 
+                <a href="#" id="closeHours" class="btn btn-default btn-wide">Avbryt</a>
+                    <button type="submit" data-bind="enable: 
+                                !isSuccess() && !showError() 
                                 && name() != undefined && name() != ''
                                 && phone() != undefined  && phone() != ''
                                 && email() != undefined  && email() != ''
@@ -436,7 +437,7 @@
                                 && topics() != undefined && topics().length > 0
                                 && highSchool() != undefined && highSchool() !=''" 
                 id="hoursButton" class="btn btn-primary" name="submit" alt="PayPal – en trygg og enkel betalingsmetode på nettet!">
-                        Send forespørsel <i class="fa fa-paypal" aria-hidden="true"></i>
+                        Send forespørsel
                     </button>
             </div>
         </div>
@@ -454,7 +455,7 @@
                     <input type="text" required data-bind="textInput: name" placeholder="Ditt navn" class="form-control input-lg" />
                 </div>
                 <div class="form-group">
-                    <input type="number" required data-bind="textInput: phone" placeholder="Ditt telefon-nummer" class="form-control input-lg" />
+                    <input type="text" required data-bind="textInput: phone" placeholder="Ditt telefon-nummer" class="form-control input-lg" />
                 </div>
                 <div class="form-group">
                     <input type="text" required data-bind="textInput: email" placeholder="Din epost" class="form-control input-lg" />
