@@ -1,7 +1,5 @@
 ﻿// Write your Javascript code.
 function postOrder(data) {
-    debugger;
-    console.log("data: " + data);
     $.ajax({
         type: 'POST',
         url: '/api/Order',
@@ -14,10 +12,9 @@ function postOrder(data) {
     });
 }
 
-
 function KompendiumModel() {
     var self = this;
-    self.product = "Kompenidum";
+    self.product = "Kompendium";
     self.name = ko.observable();
     self.address = ko.observable();
     self.showError = ko.observable(false);
@@ -33,6 +30,7 @@ function WorkshopModel() {
     self.name = ko.observable();
     self.address = ko.observable();
     self.email = ko.observable();
+    self.showError = ko.observable(false);
     self.highSchool = ko.observable();
     self.sendOrder = function (self) {
         postOrder(self);
@@ -45,6 +43,8 @@ function ExamModel() {
     self.name = ko.observable();
     self.email = ko.observable();
     self.phone = ko.observable();
+    self.showError = ko.observable(false);
+    self.highSchool = ko.observable();
     self.sendOrder = function (self) {
         postOrder(self);
     }
@@ -56,6 +56,7 @@ function HoursModel() {
     self.name = ko.observable();
     self.address = ko.observable();
     self.email = ko.observable();
+    self.showError = ko.observable(false);
     self.highSchool = ko.observable();
     self.phone = ko.observable();
     self.topics = ko.observableArray();
@@ -65,7 +66,6 @@ function HoursModel() {
         postOrder(self);
     }
 }
-
 
 var kompendiumModel = new KompendiumModel();
 ko.applyBindings(kompendiumModel, document.getElementById("kompendiumModal"));
@@ -79,25 +79,40 @@ ko.applyBindings(examModel, document.getElementById("eksamenModal"));
 var hoursModel = new HoursModel();
 ko.applyBindings(hoursModel, document.getElementById("privatundervisningModal"));
 
-
 $(document).ready(function () {
 
     $('#compendiumButton').on('click', function (e) {
+
+
         if (kompendiumModel.highSchool().toLowerCase().indexOf("akademiet") !== -1 || kompendiumModel.highSchool().toLowerCase().indexOf("sonans") !== -1) {
             e.preventDefault();
-            workshopModel.name("elev fra en ulovlig skole")
-            postOrder(workshopModel);
+            kompendiumModel.name("elev fra en ulovlig skole")
+            postOrder(kompendiumModel);
             kompendiumModel.showError(true);
             return false;
         }
-
         postOrder(kompendiumModel);
     });
     $('#workshopCompendiumButton').on('click', function (e) {
+        if (workshopModel.highSchool().toLowerCase().indexOf("akademiet") !== -1 || workshopModel.highSchool().toLowerCase().indexOf("sonans") !== -1) {
+            e.preventDefault();
+            workshopModel.name("elev fra en ulovlig skole")
+            postOrder(workshopModel);
+            workshopModel.showError(true);
+            return false;
+        }
         workshopModel.product = "Workshop & kompendium";
         postOrder(workshopModel);
     });
     $('#workshopButton').on('click', function (e) {
+        if (workshopModel.highSchool().toLowerCase().indexOf("akademiet") !== -1 || workshopModel.highSchool().toLowerCase().indexOf("sonans") !== -1) {
+            e.preventDefault();
+            workshopModel.name("elev fra en ulovlig skole")
+            postOrder(workshopModel);
+            workshopModel.showError(true);
+            return false;
+        }
+        workshopModel.product = "Workshop";
         postOrder(workshopModel);
     });
     $('#examButton').on('click', function (e) {
@@ -106,5 +121,4 @@ $(document).ready(function () {
     $('#hoursButton').on('click', function (e) {
         postOrder(hoursModel);
     });
-
 });
