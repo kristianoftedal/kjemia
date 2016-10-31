@@ -42,8 +42,8 @@ namespace Kjemia.Controllers
             value.Status = "Mottatt";
             
             var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress("Kjemia", "kristian.oftedal@pointtaken.no"));
-            emailMessage.To.Add(new MailboxAddress("Kjemia", "oftedal.kristian@gmail.com"));
+            emailMessage.From.Add(new MailboxAddress("Kjemia", "havardryan@hotmail.no"));
+            emailMessage.To.Add(new MailboxAddress("Kjemia", "havardryan@hotmail.com"));
             emailMessage.Subject = "Ny bestilling - " + value.Product;
             var body = new TextPart("plain")
             {
@@ -53,8 +53,8 @@ namespace Kjemia.Controllers
             emailMessage.Body = body;
             using (var client = new SmtpClient())
             {
-                client.Connect("smtp.office365.com", 587, SecureSocketOptions.Auto);
-                client.Authenticate("kristian.oftedal@pointtaken.no", @"ma\+05v2");
+                client.Connect("smtp-mail.outlook.com", 587, SecureSocketOptions.Auto);
+                client.Authenticate("havardryan@hotmail.com", @"nisokili87");
                 await client.SendAsync(emailMessage).ConfigureAwait(false);
                 await client.DisconnectAsync(true).ConfigureAwait(false);
             }
@@ -67,7 +67,12 @@ namespace Kjemia.Controllers
             body += value.Product + Environment.NewLine;
             body += "Kunde: " + Environment.NewLine;
             body += "Navn: " + value.Name + Environment.NewLine;
-            body += "Adresse: " + value.Address + Environment.NewLine;
+            if (!string.IsNullOrEmpty(value.Address))
+                body += "Adresse: " + value.Address + Environment.NewLine;
+            if (!string.IsNullOrEmpty(value.Poststed))
+                body += "Poststed: " + value.Poststed + Environment.NewLine;
+            if (!string.IsNullOrEmpty(value.Postnummer))
+                body += "Postnummer: " + value.Postnummer + Environment.NewLine;
             if (!string.IsNullOrEmpty(value.Email))
                 body += "Email: " + value.Email + Environment.NewLine;
             if (!string.IsNullOrEmpty(value.Phone))

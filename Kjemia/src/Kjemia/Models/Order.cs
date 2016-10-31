@@ -10,6 +10,8 @@ namespace Kjemia.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
+        public string Postnummer { get; set; }
+        public string Poststed { get; set; }
         public string Phone { get; set; }
         public string Highschool { get; set; }
         public string[] Topics { get; set; }

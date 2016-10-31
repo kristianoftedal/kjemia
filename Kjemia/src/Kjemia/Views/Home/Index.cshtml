@@ -5,13 +5,13 @@
 <div class="reviews">
     <div class="review review-one" data-toggle="modal" data-target="#reviewOneModal">
         <blockquote class="quote">
-            <p>Læringen var eksamensrettet og foregikk på en måte som gjorde det gøy å lære kjemi.</p>
+            <p>Læringen var eksamensrettet og foregikk på en måte som gjorde det gøy å lære kjemi.</p><br />
             <footer>Sara (20) tidl. elev<br /><cite title="Source Title">Medisinstudent, UiB</cite></footer>
         </blockquote>
     </div>
     <div class="review review-two" data-toggle="modal" data-target="#reviewTwoModal">
         <blockquote class="quote">
-            <p>Håvard hjalp meg med å mestre kjemi og få toppkarakter på eksamen.</p>
+            <p>Håvard hjalp meg med å mestre kjemi og få toppkarakter på eksamen.</p><br />
             <footer>Shan (20) tidl. elev <br /><cite title="Source Title">Molekylærbiologi, UiO</cite></footer>
         </blockquote>
     </div>
@@ -25,7 +25,7 @@
 
     <div class="review review-four" data-toggle="modal" data-target="#reviewFourModal">
         <blockquote class="quote">
-            <p>Ønsker du å bli ekspert i kjemi søker du definitivt etter disse to kjemikongene. </p>
+            <p>Ønsker du å bli ekspert i kjemi søker du definitivt etter disse to kjemikongene. </p><br />
             <footer>Marwa (20) tidl. elev<br /><cite title="Source Title">Medisinstudent, UiO</cite></footer>
         </blockquote>
     </div>
@@ -63,7 +63,7 @@
                         <li>Kompendiet er lov til å ha med seg som hjelpemiddel på del to av skriftlig eksamen.</li>
                         <li>Kompendiet er pent innbundet og i farger.</li>
                     </ul>
-                    <p>Det er mulig å melde seg på gjennomregning av utvalgte oppgaver i kompendiet med oss i Kjemia lørdag 10. november. Se Workshop for mer info.</p>
+                    @*<p>Det er mulig å melde seg på gjennomregning av utvalgte oppgaver i kompendiet med oss i Kjemia lørdag 10. november. Se Workshop for mer info.</p>*@
                     <p>Kun 849 kr (inkl. frakt)</p>
                     <a class="btn btn-primary btn-hg" data-toggle="modal" data-target="#kompendiumModal">Bestill</a>
                 </div>
@@ -157,14 +157,14 @@
                 <div class="col-md-8">
                     <p>Dette får du:</p>
                     <ul>
-                        <li>Velg mellom 2, 4, 6, 8, 10 undervisningsøkter eller annet.</li>
+                        <li>Velg mellom 2, 4 eller 6 undervisningsøkter eller annet.</li>
                         <li>Første undervisningstimer starter en uke etter bestilling.</li>
                         <li>Forklaring på alle mekanismer.</li>
                         <li>Hjelp til alle utregnigner.</li>
                         <li>Svar på alle spørsmål om eksamen.</li>
                         <li>En lærer som er ung og til å forklare kjemi med eksempler du kan kjenne deg igjen i.</li>
                     </ul>
-                    <p>Kun 900 kr. for en skole time a 45 minutter</p>
+                    <p>Kun 900 kr. for en skole time a 45 minutter. Faktura sendes på mail etter gjennomført undervisning</p>
                     <a class="btn btn-primary btn-hg" data-toggle="modal" data-target="#privatundervisningModal">Bestill</a>
                 </div>
                 <div class="col-md-4 workshop-img">
@@ -211,6 +211,7 @@
                 <hr />
                 <span>Hvis det er noe du lurer på, send oss gjerne epost,</span> <strong>kontakt at kjemia dot no</strong>
             </div>
+        </div>
     </div>
 </div>
 <div class="modal spacing" id="kompendiumModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -226,7 +227,16 @@
                     <input type="text" data-bind="value: name" placeholder="Ditt navn *" class="form-control input-lg" />
                 </div>
                 <div class="form-group">
+                    <input type="number" data-bind="value: phone" required placeholder="Ditt telefon-nummer" class="form-control input-lg" />
+                </div>
+                <div class="form-group">
                     <input type="text" data-bind="value: address" placeholder="Din adresse *" class="form-control input-lg" />
+                </div>
+                <div class="form-group">
+                    <input type="text" data-bind="value: postnummer" placeholder="Postnummer *" class="form-control input-lg" />
+                </div>
+                <div class="form-group">
+                    <input type="text" data-bind="value: poststed" placeholder="Poststed *" class="form-control input-lg" />
                 </div>
                 <div class="form-group">
                     <input type="text" data-bind="value: highSchool"  placeholder="Din videregåendeskole *" class="form-control input-lg" />
@@ -324,19 +334,19 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="text" data-bind="value: name" required placeholder="Ditt navn" class="form-control input-lg" />
+                    <input type="text" data-bind="value: name" required placeholder="Ditt navn" class="form-control input-sm" />
                 </div>
                 <div class="form-group">
-                    <input type="text" data-bind="value: email" required placeholder="Din epost" class="form-control input-lg" />
+                    <input type="text" data-bind="value: email" required placeholder="Din epost" class="form-control input-sm" />
                 </div>
                 <div class="form-group">
-                    <input type="number" data-bind="value: phone" required placeholder="Ditt telefon-nummer" class="form-control input-lg" />
+                    <input type="number" data-bind="value: phone" required placeholder="Ditt telefon-nummer" class="form-control input-sm" />
                 </div>
                 <div class="form-group">
-                    <input type="text" data-bind="value: highSchool" placeholder="Din videregåendeskole *" class="form-control input-lg" />
+                    <input type="text" data-bind="value: highSchool" placeholder="Din videregåendeskole *" class="form-control input-sm" />
                 </div>
                 <div class="form-group">
-                    <input type="text" data-bind="value: address" required placeholder="Din adresse" class="form-control input-lg" />
+                    <input type="text" data-bind="value: address" required placeholder="Din adresse" class="form-control input-sm" />
                 </div>
                 <div data-bind="if: showError()">
                     Du kan dessverre ikke kjøpe kompendiumet om du er elev ved Sonans eller Akademiet
@@ -556,7 +566,6 @@
                 <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
                 <h4 class="modal-title">Marwa (20) tidl. elev – Medisinstudent, UiO</h4>
             </div>
-
             <div class="modal-body">
                 <p>
                     Ønsker du å bli ekspert i kjemi søker du definitivt etter disse to kjemikongene. Jeg har vært heldig og hatt både Håvard og Carl-Joachim i kjemi 1og 2. Hvordan Håvard klarte å vekke interessen for kjemi i både meg, og andre elever, var helt utrolig. Av alt, beundret jeg hans formidlingsevne mest – måten han klarte å forklare grunnleggende prinsipper og hvordan alt hang sammen ga oss en bred forståelse av faget. Ja, han var faglig dyktig, men for meg var dette rett og slett et talent som ikke alle dyktige lærere behersket.
@@ -564,7 +573,6 @@
                     Som resultat av deres arbeid og hjelp, klarte jeg å oppnå toppkarakterer i faget som jeg ellers ikke hadde fått til.
                 </p>
             </div>
-
             <div class="modal-footer">
                 <a href="#" data-dismiss="modal" class="btn btn-default btn-wide">Lukk</a>
             </div>

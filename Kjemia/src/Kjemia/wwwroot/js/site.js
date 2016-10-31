@@ -16,7 +16,10 @@ function KompendiumModel() {
     var self = this;
     self.product = "Kompendium";
     self.name = ko.observable();
+    self.phone = ko.observable();
     self.address = ko.observable();
+    self.postnummer = ko.observable();
+    self.poststed = ko.observable();
     self.showError = ko.observable(false);
     self.highSchool = ko.observable();
     self.sendOrder = function (self) {
