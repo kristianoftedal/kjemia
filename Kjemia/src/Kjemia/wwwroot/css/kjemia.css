@@ -140,3 +140,27 @@ form {
     margin-left: 10px;
     float: right;
 }
+
+.hours-ordered {
+    background-color: #2ECC71;
+    color: white;
+}
+
+.ordered-error {
+    background-color: #E74C3C;
+    color: white;
+}
+
+.ordered-error label {
+    padding-left: 29px;
+    font-size: 19px !important;
+    background-color: #E74C3C;
+    color: white;
+}
+
+.hours-ordered label {
+    padding-left: 29px;
+    font-size: 19px !important;
+    background-color: #2ECC71;
+    color: white;
+}

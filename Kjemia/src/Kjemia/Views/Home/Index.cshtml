@@ -181,7 +181,6 @@
                     Vi har over åtte års erfaring som lærere i Kjemi 1 & Kjemi 2.
                     I løpet av disse årene har vi hatt elever som har gått ut med toppkarakter i både standpunktkarakter og på eksamen.
                     Som sensorer har vi eksaminert over 3000 kandidater i muntlig-praktisk og skriftlig eksamen.
-
                 </p>
             </div>
             <div class="row">
@@ -223,26 +222,28 @@
             </div>
 
             <div class="modal-body">
-                <div class="form-group">
-                    <input type="text" data-bind="value: name" placeholder="Ditt navn *" class="form-control input-lg" />
+                <div class="form-group" data-bind="css: { 'has-error': nameError()}">
+                    <input type="text" data-bind="textInput: name" placeholder="Ditt navn *" class="form-control input-lg" />
                 </div>
                 <div class="form-group">
-                    <input type="number" data-bind="value: phone" required placeholder="Ditt telefon-nummer" class="form-control input-lg" />
+                    <input type="text" data-bind="textInput: phone" required placeholder="Ditt telefon-nummer" class="form-control input-lg" />
                 </div>
                 <div class="form-group">
-                    <input type="text" data-bind="value: address" placeholder="Din adresse *" class="form-control input-lg" />
+                    <input type="text" data-bind="textInput: address" placeholder="Din adresse *" class="form-control input-lg" />
                 </div>
                 <div class="form-group">
-                    <input type="text" data-bind="value: postnummer" placeholder="Postnummer *" class="form-control input-lg" />
+                    <input type="text" data-bind="textInput: postnummer" placeholder="Postnummer *" class="form-control input-lg" />
                 </div>
                 <div class="form-group">
-                    <input type="text" data-bind="value: poststed" placeholder="Poststed *" class="form-control input-lg" />
+                    <input type="text" data-bind="textInput: poststed" placeholder="Poststed *" class="form-control input-lg" />
                 </div>
                 <div class="form-group">
-                    <input type="text" data-bind="value: highSchool"  placeholder="Din videregåendeskole *" class="form-control input-lg" />
+                    <input type="text" data-bind="textInput: highSchool"  placeholder="Din videregåendeskole *" class="form-control input-lg" />
                 </div>
-                <div data-bind="if: showError()">
-                    Du kan dessverre ikke kjøpe kompendiumet om du er elev ved Sonans eller Akademiet
+                <div class="ordered-error" data-bind="if: showError()">
+                    <label>
+                        Du kan dessverre ikke kjøpe kompendiumet om du er elev ved Sonans eller Akademiet.
+                    </label>
                 </div>
             </div>
             <div class="modal-footer">
@@ -250,10 +251,13 @@
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_s-xclick">
                     <input type="hidden" name="hosted_button_id" value="9HW86AJ9AXPRY">
-                    <button data-bind="enable: !showError() 
-                            && name() != undefined && name() != ''
-                            && address() != undefined && address() != ''
-                            && highSchool() != undefined && highSchool() !=''"
+                    <button data-bind="enable: !showError()
+                                && name() != undefined &&  name() != ''
+                                && phone() != undefined  && phone() != ''
+                                && address() != undefined && address() != ''
+                                && postnummer() != undefined && postnummer() != ''
+                                && poststed() != undefined && poststed() != ''
+                                && highSchool() != undefined && highSchool() !=''"
                             type="submit" id="compendiumButton" class="btn btn-primary" name="submit" alt="PayPal – en trygg og enkel betalingsmetode på nettet!">
                         Kjøp <i class="fa fa-paypal" aria-hidden="true"></i>
                     </button>
@@ -273,7 +277,7 @@
             </div>
 
             <div class="modal-body">
-                <div class="form-group">
+                <div class="form-group" data-bind="{ has-error: nameError()}">
                     <input type="text" placeholder="Ditt navn" class="form-control input-lg" />
                 </div>
                 <div class="form-group">
@@ -288,10 +292,11 @@
                 <div class="form-group">
                     Forutsetning: du har kjøpt kompendiumet
                 </div>
-                <div data-bind="if: showError()">
-                    Du kan dessverre ikke kjøpe kompendiumet om du er elev ved Sonans eller Akademiet
+                <div class="ordered-error" data-bind="if: showError()">
+                    <label>
+                        Du kan dessverre ikke kjøpe kompendiumet om du er elev ved Sonans eller Akademiet.
+                    </label>
                 </div>
-
                 <div class="modal-footer">
                     <a href="#" data-dismiss="modal" class="btn btn-default btn-wide">Avbryt</a>
                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -299,7 +304,7 @@
                         <input type="hidden" name="hosted_button_id" value="5N8EN8SGEY9XE">
                         <button type="submit" data-bind="enable: !showError() 
                                 && name() != undefined &&  name() != ''
-                                && (mail() != undefined  && email() != ''
+                                && mail() != undefined  && email() != ''
                                 && address() != undefined && address() != ''
                                 && highSchool() != undefined && highSchool() !=''"
                                 id="workshopButton" class="btn btn-primary" name="submit" alt="PayPal – en trygg og enkel betalingsmetode på nettet!">
@@ -310,11 +315,7 @@
                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                         <input type="hidden" name="cmd" value="_s-xclick">
                         <input type="hidden" name="hosted_button_id" value="4JB8UL5JJGC3W">
-                        <button type="submit" data-bind="enable: !showError() 
-                                && name() != undefined &&  name() != ''
-                                && email() != undefined  && email() != ''
-                                && address() != undefined && address() != ''
-                                && highSchool() != undefined && highSchool() !=''"
+                        <button type="submit" data-bind="enable: !showError()"
                                 id="workshopCompendiumButton" class="btn btn-primary" name="submit" alt="PayPal – en trygg og enkel betalingsmetode på nettet!">
                             Kjøp med kompendiet <i class="fa fa-paypal" aria-hidden="true"></i>
                         </button>
@@ -334,25 +335,27 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="text" data-bind="value: name" required placeholder="Ditt navn" class="form-control input-sm" />
+                    <input type="text" data-bind="textInput: name" required placeholder="Ditt navn" class="form-control input-sm" />
                 </div>
                 <div class="form-group">
-                    <input type="text" data-bind="value: email" required placeholder="Din epost" class="form-control input-sm" />
+                    <input type="text" data-bind="textInput: email" required placeholder="Din epost" class="form-control input-sm" />
                 </div>
                 <div class="form-group">
-                    <input type="number" data-bind="value: phone" required placeholder="Ditt telefon-nummer" class="form-control input-sm" />
+                    <input type="text" data-bind="textInput: phone" required placeholder="Ditt telefon-nummer" class="form-control input-sm" />
                 </div>
                 <div class="form-group">
-                    <input type="text" data-bind="value: highSchool" placeholder="Din videregåendeskole *" class="form-control input-sm" />
+                    <input type="text" data-bind="textInput: highSchool" placeholder="Din videregåendeskole *" class="form-control input-sm" />
                 </div>
                 <div class="form-group">
-                    <input type="text" data-bind="value: address" required placeholder="Din adresse" class="form-control input-sm" />
+                    <input type="text" data-bind="textInput: address" required placeholder="Din adresse" class="form-control input-sm" />
                 </div>
-                <div data-bind="if: showError()">
-                    Du kan dessverre ikke kjøpe kompendiumet om du er elev ved Sonans eller Akademiet
+                <div class="ordered-error" data-bind="if: showError()">
+                    <label>                        
+                        Du kan dessverre ikke kjøpe kompendiumet om du er elev ved Sonans eller Akademiet.
+                    </label>
                 </div>
                 <span>Anslå antall ønskede timer:</span>
-                <select class="form-control select-primary">
+                <select class="form-control select-primary input-sm">
                     <option value="-1">Velg antall timer</option>
                     <option value="0">2</option>
                     <option value="1">4</option>
@@ -361,10 +364,10 @@
                 </select>
                 <span>Velg fag:</span>
                 <div id="access-rights-control" >
-                    <label class="radio">
+                    <label class="radio-inline">
                         <input type="radio" name="status" value="kjemi1" data-bind="checked: kjemi" />Kjemi 1
                     </label>
-                    <label class="radio">
+                    <label class="radio-inline">
                         <input type="radio"  name="status" value="kjemi2" data-bind="checked: kjemi" />Kjemi 2
                     </label>
                 </div>
@@ -419,17 +422,20 @@
                     </label>
                 </div>
             </div>
+            <div class="hours-ordered" data-bind="if: isSuccess()">
+                <label>Din bestilling er mottatt og vi vil kontakte så fort vi får mulighet</label>
+            </div>
             <div class="modal-footer">
                 <a href="#" data-dismiss="modal" class="btn btn-default btn-wide">Avbryt</a>
-                    <button type="submit" 
-                             data-bind="enable: !showError() 
-                                && name() != undefined &&  name() != ''
+                    <button type="submit" data-bind="enable: !isSuccess() && !showError() 
+                                && name() != undefined && name() != ''
                                 && phone() != undefined  && phone() != ''
                                 && email() != undefined  && email() != ''
                                 && address() != undefined && address() != ''
-                                && topics() != undefined && topics().length != ''
-                                && highSchool() != undefined && highSchool() !=''"
-                            id="hoursButton" class="btn btn-primary" name="submit" alt="PayPal – en trygg og enkel betalingsmetode på nettet!">
+                                && highSchool() != undefined && highSchool() != ''
+                                && topics() != undefined && topics().length > 0
+                                && highSchool() != undefined && highSchool() !=''" 
+                id="hoursButton" class="btn btn-primary" name="submit" alt="PayPal – en trygg og enkel betalingsmetode på nettet!">
                         Send forespørsel <i class="fa fa-paypal" aria-hidden="true"></i>
                     </button>
             </div>
@@ -445,20 +451,22 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="text" required data-bind="value: name" placeholder="Ditt navn" class="form-control input-lg" />
+                    <input type="text" required data-bind="textInput: name" placeholder="Ditt navn" class="form-control input-lg" />
                 </div>
                 <div class="form-group">
-                    <input type="number" required data-bind="value: phone" placeholder="Ditt telefon-nummer" class="form-control input-lg" />
+                    <input type="number" required data-bind="textInput: phone" placeholder="Ditt telefon-nummer" class="form-control input-lg" />
                 </div>
                 <div class="form-group">
-                    <input type="text" required data-bind="value: email" placeholder="Din epost" class="form-control input-lg" />
+                    <input type="text" required data-bind="textInput: email" placeholder="Din epost" class="form-control input-lg" />
                 </div>
                 <div class="form-group">
-                    <input type="text" data-bind="value: highSchool" placeholder="Din videregåendeskole *" class="form-control input-lg" />
+                    <input type="text" data-bind="textInput: highSchool" placeholder="Din videregåendeskole *" class="form-control input-lg" />
                 </div>
             </div>
-            <div data-bind="if: showError()">
-                Du kan dessverre ikke kjøpe kompendiumet om du er elev ved Sonans eller Akademiet
+            <div class="ordered-error" data-bind="if: showError()">
+                <label>
+                    Du kan dessverre ikke kjøpe kompendiumet om du er elev ved Sonans eller Akademiet.
+                </label>
             </div>
             <div class="modal-footer">
                 <a href="#" data-dismiss="modal" class="btn btn-default btn-wide">Avbryt</a>

@@ -16,12 +16,45 @@ function KompendiumModel() {
     var self = this;
     self.product = "Kompendium";
     self.name = ko.observable();
+    self.nameError = ko.observable(false);
     self.phone = ko.observable();
+    self.phoneError = ko.observable(false);
     self.address = ko.observable();
+    self.addressError = ko.observable(false);
     self.postnummer = ko.observable();
+    self.postnummerError = ko.observable(false);
     self.poststed = ko.observable();
-    self.showError = ko.observable(false);
+    self.poststedError = ko.observable(false);
     self.highSchool = ko.observable();
+    self.highSchoolError = ko.observable(false);
+    self.showError = ko.observable(false);
+    self.validate = function () {
+        if (self.name() == undefined || self.name() == '') {
+            self.nameError(true);
+            return false;
+        }
+        if (self.phone() == undefined || self.phone() == '') {
+            self.phoneError(true);
+            return false;
+        }
+        if (self.address() == undefined || self.address() == '') {
+            self.addressError(true);
+            return false;
+        }
+        if (self.postnummer() == undefined || self.postnummer() == '') {
+            self.postnummerError(true);
+            return false;
+        }
+        if (self.poststed() == undefined || self.poststed() == '') {
+            self.poststedError(true);
+            return false;
+        }
+        if (self.highSchool() == undefined || self.highSchool() == '') {
+            self.highSchoolError(true);
+            return false;
+        }
+        return true;
+    };
     self.sendOrder = function (self) {
         postOrder(self);
     }
@@ -60,6 +93,7 @@ function HoursModel() {
     self.address = ko.observable();
     self.email = ko.observable();
     self.showError = ko.observable(false);
+    self.isSuccess = ko.observable(false);
     self.highSchool = ko.observable();
     self.phone = ko.observable();
     self.topics = ko.observableArray();
@@ -83,10 +117,12 @@ var hoursModel = new HoursModel();
 ko.applyBindings(hoursModel, document.getElementById("privatundervisningModal"));
 
 $(document).ready(function () {
-
     $('#compendiumButton').on('click', function (e) {
-
-
+        //debugger;
+        //if (!kompendiumModel.validate()) {
+        //    e.preventDefault();
+        //    return false;
+        //}
         if (kompendiumModel.highSchool().toLowerCase().indexOf("akademiet") !== -1 || kompendiumModel.highSchool().toLowerCase().indexOf("sonans") !== -1) {
             e.preventDefault();
             kompendiumModel.name("elev fra en ulovlig skole")
@@ -94,7 +130,9 @@ $(document).ready(function () {
             kompendiumModel.showError(true);
             return false;
         }
-        postOrder(kompendiumModel);
+        else {
+            postOrder(kompendiumModel);
+        }
     });
     $('#workshopCompendiumButton').on('click', function (e) {
         if (workshopModel.highSchool().toLowerCase().indexOf("akademiet") !== -1 || workshopModel.highSchool().toLowerCase().indexOf("sonans") !== -1) {
@@ -122,6 +160,8 @@ $(document).ready(function () {
         postOrder(examModel);
     });
     $('#hoursButton').on('click', function (e) {
+
+        hoursModel.isSuccess(true);
         postOrder(hoursModel);
     });
 });
