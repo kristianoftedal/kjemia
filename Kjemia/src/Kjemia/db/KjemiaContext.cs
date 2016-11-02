@@ -9,10 +9,10 @@ namespace Kjemia.db
 {
     public class KjemiaContext : DbContext
     {
-        public KjemiaContext(DbContextOptions<DbContext> options)
+        public KjemiaContext(DbContextOptions<KjemiaContext> options)
             : base(options)
         { }
-        
+
 
         public DbSet<Order> Orders { get; set; }
     }

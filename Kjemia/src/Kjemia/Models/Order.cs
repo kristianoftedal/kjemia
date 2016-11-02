@@ -14,7 +14,7 @@ namespace Kjemia.Models
         public string Poststed { get; set; }
         public string Phone { get; set; }
         public string Highschool { get; set; }
-        public string[] Topics { get; set; }
+        public List<string> Topics { get; set; }
         public string Product { get; set; }
         public string Hours { get; set; }
         public string Status { get; set; }

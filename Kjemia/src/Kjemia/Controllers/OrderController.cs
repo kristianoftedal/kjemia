@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Kjemia.Models;
-using MimeKit;
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using Microsoft.Extensions.Options;
+using MimeKit;
 using Kjemia.db;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,8 +19,9 @@ namespace Kjemia.Controllers
 
         private KjemiaContext _dbcontext;
 
-        public OrderController()
+        public OrderController(KjemiaContext dbContext)
         {
+            _dbcontext = dbContext;
         }
         // GET: api/values
         [HttpGet]
@@ -36,27 +39,37 @@ namespace Kjemia.Controllers
 
         // POST api/values
         [HttpPost]
-        public async void Post([FromBody]Order value)
+        public async Task<IActionResult> Post([FromBody]Order value)
         {
-            value.Created = DateTime.Now;
-            value.Status = "Mottatt";
-            
-            var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress("Kjemia", "havardryan@hotmail.no"));
-            emailMessage.To.Add(new MailboxAddress("Kjemia", "havardryan@hotmail.com"));
-            emailMessage.Subject = "Ny bestilling - " + value.Product;
-            var body = new TextPart("plain")
+            try
             {
-                Text = FormatBody(value)
+                value.Created = DateTime.Now;
+                value.Status = "Mottatt";
 
-            };
-            emailMessage.Body = body;
-            using (var client = new SmtpClient())
+                var emailMessage = new MimeMessage();
+                emailMessage.From.Add(new MailboxAddress("Kjemia", "kristian.oftedal@pointtaken.no"));
+                emailMessage.To.Add(new MailboxAddress("Kjemia", "havardryan@hotmail.com"));
+                emailMessage.Cc.Add(new MailboxAddress("Kjemia", "kristian.oftedal@pointtaken.no"));
+                emailMessage.Subject = "Ny bestilling - " + value.Product;
+                var body = new TextPart("plain")
+                {
+                    Text = FormatBody(value)
+
+                };
+                emailMessage.Body = body;
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.office365.com", 25, SecureSocketOptions.Auto);
+                    client.Authenticate("kristian.oftedal@pointtaken.no", @"ma\+05v2");
+                    await client.SendAsync(emailMessage).ConfigureAwait(false);
+                    await client.DisconnectAsync(true).ConfigureAwait(false);
+                }
+                return Ok();
+            }
+            catch (Exception e)
             {
-                client.Connect("smtp-mail.outlook.com", 587, SecureSocketOptions.Auto);
-                client.Authenticate("havardryan@hotmail.com", @"nisokili87");
-                await client.SendAsync(emailMessage).ConfigureAwait(false);
-                await client.DisconnectAsync(true).ConfigureAwait(false);
+                return BadRequest(e.StackTrace);
+                throw;
             }
         }
 
@@ -79,7 +92,7 @@ namespace Kjemia.Controllers
                 body += "Tlf: " + value.Phone + Environment.NewLine;
             if (!string.IsNullOrEmpty(value.Highschool))
                 body += "Videregående: " + value.Highschool;
-            if (value.Topics != null && value.Topics.Length > 0)
+            if (value.Topics != null && value.Topics.Count > 0)
                 body += "Trenger hjelp med: " + String.Join(", ", value.Topics) + Environment.NewLine;
             
             return body;

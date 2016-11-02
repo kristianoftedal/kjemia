@@ -7,7 +7,12 @@ function postOrder(data) {
         dataType: "json",
         data: ko.toJSON(data),
         success: function (response) {
+            debugger;
             return true;
+        },
+        error: function (error) {
+            console.log(error);
+            debugger;
         }
     });
 }
