@@ -13,6 +13,22 @@
     width: 1300px;  
 }
 
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+  /* Hide captions */
+  .container {
+    width: 100%;
+    margin-left:  !important;
+    margin-right: 0 !important;
+  }
+  .modal-dialog {
+      width: 85%;
+  }
+  button.navbar-toggle {
+    margin-right: 5%;
+  }
+}
+
 .modal-backdrop{
     z-index: -1;
     height: 100% !important;
@@ -26,10 +42,17 @@
     margin-bottom: 20px;
 }
 
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+  /* Hide captions */
+  .reviews {
+    display: none
+  }
+}
+
 .review {
     width: 25%;
     padding: 30px 20px 0px 20px;
-
 }
 
 .review-one {
@@ -163,4 +186,12 @@ form {
     font-size: 19px !important;
     background-color: #2ECC71;
     color: white;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    h1 {
+        font-size: 26px;
+    }
 }
