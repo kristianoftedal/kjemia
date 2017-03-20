@@ -110,7 +110,6 @@ function HoursModel() {
     });
     self.isSuccess = ko.observable(false);
     self.phone = ko.observable();
-    self.kjemi = ko.observable("kjemi2");
     self.sendOrder = function (self) {
         postOrder(self);
     }
