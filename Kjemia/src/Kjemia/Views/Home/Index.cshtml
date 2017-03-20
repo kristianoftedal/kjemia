@@ -53,11 +53,11 @@
                         Kompendium - Kjemi 1
                     </h4>
                     <p>
-                        Sensasjonelt i Norge. Kompendium i Kjemi 1 med over 300 eksamensrelaterte oppgaver på norsk.
+                        Sensasjonelt i Norge. Kompendium i Kjemi 1 med over 700 eksamensrelaterte oppgaver på norsk.
                     </p>
                     Dette får du:
                     <ul>
-                        <li>Over 300 eksamensrelaterte oppgaver fra alle hovedområdene.</li>
+                        <li>Over 700 eksamensrelaterte oppgaver fra alle hovedområdene.</li>
                         <li>Halvparten multiple choice og halvparten langsvarsoppgaver.</li>
                         <li>Oppgaver valgt ut og skrevet av oss.</li>
                         <li>Uvurderlig trening til muntlig-praktisk eksamen.</li>
@@ -96,7 +96,7 @@
                     </ul>
                     @*<p>Det er mulig å melde seg på gjennomregning av utvalgte oppgaver i kompendiet med oss i Kjemia lørdag 10. november. Se Workshop for mer info.</p>*@
                     <p>Kun 649 kr (inkl. frakt).</p>
-                    <a class="btn btn-primary btn-hg" data-toggle="modal" data-target="#kompendiumModal">Bestill</a>
+                    <a class="btn btn-primary btn-hg" data-toggle="modal" data-target="#kompendiumModal2">Bestill</a>
                 </div>
                 <div class="col-md-5">
                     <img class="img-rounded img-responsive center-img molecule" src="~/images/schema.png" />
@@ -437,14 +437,6 @@
                         Du kan dessverre ikke kjøpe kompendiumet om du er elev ved Sonans eller Akademiet.
                     </label>
                 </div>
-                <span>Anslå antall ønskede timer:</span>
-                <select class="form-control select-primary input-sm">
-                    <option value="-1">Velg antall timer</option>
-                    <option value="0">2</option>
-                    <option value="1">4</option>
-                    <option value="2">6</option>
-                    <option value="4">Annet, avtales per telefon</option>
-                </select>
                 <span>Velg fag:</span>
                 <div id="access-rights-control" >
                     <label class="radio-inline">
@@ -454,56 +446,7 @@
                         <input type="radio"  name="status" value="kjemi2" data-bind="checked: kjemi" />Kjemi 2
                     </label>
                 </div>
-                <span>Velg fokusemner:</span>
-                <div data-bind="if : kjemi() == 'kjemi2'">
-                    <label class="checkbox" for="checkbox1">
-                        <input type="checkbox" data-bind="checkedValue: 'buffere', checked: topics" id="checkbox1" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
-                        Buffere
-                    </label>
-                    <label class="checkbox" for="checkbox2">
-                        <input type="checkbox" data-bind="checkedValue: 'Redoks og elektrokjemi', checked: topics" id="checkbox2" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
-                        Redoks og elektrokjemi
-                    </label>
-                    <label class="checkbox" for="checkbox3">
-                        <input type="checkbox" data-bind="checkedValue: 'Organiske reaksjoner, analyse og polymerer', checked: topics" id="checkbox3" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
-                        Organiske reaksjoner, analyse og polymerer
-                    </label>
-                    <label class="checkbox" for="checkbox4">
-                        <input type="checkbox" data-bind="checkedValue: 'Biokjemi og næringstoffer', checked: topics" id="checkbox4" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
-                        Biokjemi og næringstoffer
-                    </label>
-                    <label class="checkbox" for="checkbox5">
-                        <input type="checkbox" data-bind="checkedValue: 'Uorganisk analyse', checked: topics" id="checkbox5" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
-                        Uorganisk analyse
-                    </label>
-                </div>
-                <div data-bind="if : kjemi() == 'kjemi1'">
-                    <label class="checkbox" for="checkbox1">
-                        <input type="checkbox" data-bind="checkedValue: 'Periodesystemet', checked: topics" id="checkbox1" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
-                        Periodesystemet
-                    </label>
-                    <label class="checkbox" for="checkbox2">
-                        <input type="checkbox" data-bind="checkedValue: 'Kjemiske bindinger', checked: topics" id="checkbox2" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
-                        Kjemiske bindinger
-                    </label>
-
-                    <label class="checkbox" for="checkbox3">
-                        <input type="checkbox" data-bind="checkedValue: 'Støkiometri', checked: topics" id="checkbox3" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
-                        Støkiometri
-                    </label>
-                    <label class="checkbox" for="checkbox4">
-                        <input type="checkbox" data-bind="checkedValue: 'Syrer & baser', checked: topics" id="checkbox4" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
-                        Syrer & baser
-                    </label>
-                    <label class="checkbox" for="checkbox5">
-                        <input type="checkbox" data-bind="checkedValue: 'Likevekter & termokjemi', checked: topics" id="checkbox5" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
-                        Likevekter & termokjemi
-                    </label>
-                    <label class="checkbox" for="checkbox6">
-                        <input type="checkbox" data-bind="checkedValue: 'Organisk kjemi', checked: topics" id="checkbox6" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
-                        Organisk kjemi
-                    </label>
-                </div>
+                
             </div>
             <div class="hours-ordered" data-bind="if: isSuccess()">
                 <label>Din bestilling er mottatt og vi vil kontakte så fort vi får mulighet.</label>
@@ -516,8 +459,6 @@
                                 && phone() != undefined  && phone() != ''
                                 && email() != undefined  && email() != ''
                                 && address() != undefined && address() != ''
-                                && highSchool() != undefined && highSchool() != ''
-                                && topics() != undefined && topics().length > 0
                                 && highSchool() != undefined && highSchool() !=''" 
                 id="hoursButton" class="btn btn-primary" name="submit" alt="PayPal – en trygg og enkel betalingsmetode på nettet!">
                         Send forespørsel
