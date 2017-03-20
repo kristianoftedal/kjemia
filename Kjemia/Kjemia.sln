@@ -1,16 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{146CA433-7672-4CFB-8BBC-2DBD6DD7A2C8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{442AAD9D-F79D-4CDC-89B7-9AF59C2EE60E}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Kjemia", "src\Kjemia\Kjemia.xproj", "{3E675A19-9F42-440A-A4A6-C0A4AE3CA305}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kjemia", "src\Kjemia\Kjemia.csproj", "{3E675A19-9F42-440A-A4A6-C0A4AE3CA305}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
