@@ -129,7 +129,20 @@ var hoursModel = new HoursModel();
 ko.applyBindings(hoursModel, document.getElementById("privatundervisningModal"));
 
 $(document).ready(function () {
-    $('#compendiumButton').on('click', function (e) {
+    $('#compendiumButton1').on('click', function (e) {
+        if (kompendiumModel.highSchool().toLowerCase().indexOf("akademiet") !== -1 || kompendiumModel.highSchool().toLowerCase().indexOf("sonans") !== -1) {
+            e.preventDefault();
+            kompendiumModel.name("elev fra en ulovlig skole")
+            postOrder(kompendiumModel);
+            kompendiumModel.showError(true);
+            return false;
+        }
+        else {
+            debugger;
+            postOrder(kompendiumModel);
+        }
+    });
+    $('#compendiumButton2').on('click', function (e) {
         if (kompendiumModel.highSchool().toLowerCase().indexOf("akademiet") !== -1 || kompendiumModel.highSchool().toLowerCase().indexOf("sonans") !== -1) {
             e.preventDefault();
             kompendiumModel.name("elev fra en ulovlig skole")

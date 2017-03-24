@@ -47,9 +47,9 @@ namespace Kjemia.Controllers
                 value.Status = "Mottatt";
 
                 var emailMessage = new MimeMessage();
-                emailMessage.From.Add(new MailboxAddress("Kjemia", "kristian.oftedal@pointtaken.no"));
+                emailMessage.From.Add(new MailboxAddress("Kjemia", "ko@ptaken.no"));
                 emailMessage.To.Add(new MailboxAddress("Kjemia", "havardryan@hotmail.com"));
-                emailMessage.Cc.Add(new MailboxAddress("Kjemia", "kristian.oftedal@pointtaken.no"));
+                emailMessage.Cc.Add(new MailboxAddress("Kjemia", "ko@ptaken.no"));
                 emailMessage.Subject = "Ny bestilling - " + value.Product;
                 var body = new TextPart("plain")
                 {
@@ -60,7 +60,7 @@ namespace Kjemia.Controllers
                 using (var client = new SmtpClient())
                 {
                     client.Connect("smtp.office365.com", 25, SecureSocketOptions.Auto);
-                    client.Authenticate("kristian.oftedal@pointtaken.no", @"ma\+05v2");
+                    client.Authenticate("ko@ptaken.no", @"ma?=)5v2");
                     await client.SendAsync(emailMessage).ConfigureAwait(false);
                     await client.DisconnectAsync(true).ConfigureAwait(false);
                 }
