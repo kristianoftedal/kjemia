@@ -138,7 +138,6 @@ $(document).ready(function () {
             return false;
         }
         else {
-            debugger;
             postOrder(kompendiumModel);
         }
     });

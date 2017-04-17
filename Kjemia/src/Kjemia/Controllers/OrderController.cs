@@ -59,10 +59,16 @@ namespace Kjemia.Controllers
                 emailMessage.Body = body;
                 using (var client = new SmtpClient())
                 {
-                    client.Connect("smtp.office365.com", 25, SecureSocketOptions.Auto);
-                    client.Authenticate("ko@ptaken.no", @"ma?=)5v2");
-                    await client.SendAsync(emailMessage).ConfigureAwait(false);
-                    await client.DisconnectAsync(true).ConfigureAwait(false);
+                    try
+                    {
+                        client.Connect("smtp.office365.com", 587, SecureSocketOptions.Auto);
+                        client.Authenticate("ko@ptaken.no", @"ma?=)5v2");
+                        await client.SendAsync(emailMessage).ConfigureAwait(false);
+                        await client.DisconnectAsync(true).ConfigureAwait(false);
+                    } catch (Exception e)
+                    {
+                        var test = e;
+                    }
                 }
                 return Ok();
             }
