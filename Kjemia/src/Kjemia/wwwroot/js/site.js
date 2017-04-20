@@ -138,6 +138,7 @@ $(document).ready(function () {
             return false;
         }
         else {
+            kompendiumModel.product += " 1";
             postOrder(kompendiumModel);
         }
     });
@@ -150,6 +151,7 @@ $(document).ready(function () {
             return false;
         }
         else {
+            kompendiumModel.product += " 2";
             postOrder(kompendiumModel);
         }
     });
