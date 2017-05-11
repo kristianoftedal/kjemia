@@ -61,6 +61,7 @@ namespace Kjemia.Controllers
                 {
                     try
                     {
+                        System.Diagnostics.Debugger.Break();
                         client.Connect("smtp.office365.com", 587, SecureSocketOptions.Auto);
                         client.Authenticate("ko@ptaken.no", @"ma?=)5v2");
                         await client.SendAsync(emailMessage).ConfigureAwait(false);

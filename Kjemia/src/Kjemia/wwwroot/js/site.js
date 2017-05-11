@@ -26,7 +26,7 @@ function KompendiumModel() {
     self.highSchool = ko.observable();
     self.showError = ko.computed(function () {
         if (self.highSchool() != undefined && self.highSchool()) {
-            return self.highSchool().toLowerCase().indexOf("akademiet") !== -1 || self.highSchool().toLowerCase().indexOf("sonans") !== -1
+            return self.highSchool().toLowerCase().indexOf("akademiet") !== -1;
         }
     });
     self.validate = function () {
@@ -87,8 +87,7 @@ function ExamModel() {
     self.highSchool = ko.observable();
     self.showError = ko.computed(function () {
         if (self.highSchool() != undefined && self.highSchool() != '') {
-            debugger;
-            return self.highSchool().toLowerCase().indexOf("akademiet") !== -1 || self.highSchool().toLowerCase().indexOf("sonans") !== -1
+            return self.highSchool().toLowerCase().indexOf("akademiet") !== -1;
         }
     });
     self.sendOrder = function (self) {
@@ -105,7 +104,7 @@ function HoursModel() {
     self.highSchool = ko.observable();
     self.showError = ko.computed(function () {
         if (self.highSchool() != undefined && self.highSchool() != '') {
-            return self.highSchool().toLowerCase().indexOf("akademiet") !== -1 || self.highSchool().toLowerCase().indexOf("sonans") !== -1
+            return self.highSchool().toLowerCase().indexOf("akademiet") !== -1;
         }
     });
     self.isSuccess = ko.observable(false);
@@ -130,7 +129,7 @@ ko.applyBindings(hoursModel, document.getElementById("privatundervisningModal"))
 
 $(document).ready(function () {
     $('#compendiumButton1').on('click', function (e) {
-        if (kompendiumModel.highSchool().toLowerCase().indexOf("akademiet") !== -1 || kompendiumModel.highSchool().toLowerCase().indexOf("sonans") !== -1) {
+        if (kompendiumModel.highSchool().toLowerCase().indexOf("akademiet") !== -1) {
             e.preventDefault();
             kompendiumModel.name("elev fra en ulovlig skole")
             postOrder(kompendiumModel);
@@ -143,7 +142,7 @@ $(document).ready(function () {
         }
     });
     $('#compendiumButton2').on('click', function (e) {
-        if (kompendiumModel.highSchool().toLowerCase().indexOf("akademiet") !== -1 || kompendiumModel.highSchool().toLowerCase().indexOf("sonans") !== -1) {
+        if (kompendiumModel.highSchool().toLowerCase().indexOf("akademiet") !== -1) {
             e.preventDefault();
             kompendiumModel.name("elev fra en ulovlig skole")
             postOrder(kompendiumModel);
@@ -156,7 +155,7 @@ $(document).ready(function () {
         }
     });
     $('#workshopCompendiumButton').on('click', function (e) {
-        if (workshopModel.highSchool().toLowerCase().indexOf("akademiet") !== -1 || workshopModel.highSchool().toLowerCase().indexOf("sonans") !== -1) {
+        if (workshopModel.highSchool().toLowerCase().indexOf("akademiet") !== -1) {
             e.preventDefault();
             workshopModel.name("elev fra en ulovlig skole")
             postOrder(workshopModel);
@@ -167,7 +166,7 @@ $(document).ready(function () {
         postOrder(workshopModel);
     });
     $('#workshopButton').on('click', function (e) {
-        if (workshopModel.highSchool().toLowerCase().indexOf("akademiet") !== -1 || workshopModel.highSchool().toLowerCase().indexOf("sonans") !== -1) {
+        if (workshopModel.highSchool().toLowerCase().indexOf("akademiet") !== -1) {
             e.preventDefault();
             workshopModel.name("elev fra en ulovlig skole")
             postOrder(workshopModel);
@@ -178,7 +177,7 @@ $(document).ready(function () {
         postOrder(workshopModel);
     });
     $('#examButton').on('click', function (e) {
-        if (examModel.highSchool().toLowerCase().indexOf("akademiet") !== -1 || examModel.highSchool().toLowerCase().indexOf("sonans") !== -1) {
+        if (examModel.highSchool().toLowerCase().indexOf("akademiet") !== -1) {
             e.preventDefault();
             examModel.name("elev fra en ulovlig skole")
             postOrder(examModel);
